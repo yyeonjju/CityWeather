@@ -15,13 +15,14 @@ final class CityWeatherMainViewModel {
     //output
     //현재 날씨 데이터
     var outputCurrentWeather : Observable<CurrentWeather?> = Observable(nil)
-    
+    var outputWeatherForecast : Observable<WeatherForecast?> = Observable(nil)
     
     
     init() {
         inputViewDidLoadTrigger.bind(onlyCallWhenValueDidSet: true) {[weak self] _ in
             guard let self else {return }
             self.getCurrentWeatherData()
+            self.getWeatherForecastData()
         }
     }
     
@@ -31,6 +32,14 @@ final class CityWeatherMainViewModel {
             guard let self else {return }
             print("value, error❤️", value, error)
             self.outputCurrentWeather.value = value
+        }
+    }
+    
+    private func getWeatherForecastData() {
+        APIFetcher.shared.getWeatherForecast(lat: "37.583328", lon: "127.0") { [weak self] value, error in
+            guard let self else {return }
+            print("value, error🎀", value, error)
+            self.outputWeatherForecast.value = value
         }
     }
     

@@ -11,6 +11,7 @@ import Foundation
 
 protocol APIFetchable {
     func getCurrenWeather(lat : String, lon : String, handler : @escaping (CurrentWeather?, String?)->Void) -> Void
+    func getWeatherForecast(lat : String, lon : String, handler: @escaping (WeatherForecast?, String?) -> Void)
 }
 
 
@@ -94,6 +95,14 @@ extension APIFetcher : APIFetchable{
         let requestType = NetworkRequest.currentWeather(lat: lat, lon: lon)
         
         getSingle(model : CurrentWeather.self, requestType : requestType){ value, error in
+            handler(value, error?.errorMessage)
+        }
+    }
+    
+    func getWeatherForecast(lat : String, lon : String, handler: @escaping (WeatherForecast?, String?) -> Void) {
+        let requestType = NetworkRequest.weatherForecast(lat: lat, lon: lon)
+        
+        getSingle(model : WeatherForecast.self, requestType : requestType){ value, error in
             handler(value, error?.errorMessage)
         }
     }

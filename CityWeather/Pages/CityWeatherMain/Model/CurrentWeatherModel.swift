@@ -23,8 +23,11 @@ struct CurrentWeather : Decodable {
     let name: String
     let cod: Int
     
+    var currentTempText : String {
+        get {return "\(main.temp)°"}
+    }
     var maxMinTempText : String {
-        get {return "최고 : \(main.tempMax) | 최저 : \(main.tempMin)"}
+        get {return "최고 : \(main.tempMax)° | 최저 : \(main.tempMin)°"}
     }
 }
 

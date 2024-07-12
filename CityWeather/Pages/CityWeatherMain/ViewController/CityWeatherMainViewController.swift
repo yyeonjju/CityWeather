@@ -36,6 +36,12 @@ final class CityWeatherMainViewController : UIViewController {
             setupCurrentWeatherData(data : value)
         }
         
+        vm.outputWeatherForecast.bind {[weak self] value in
+            guard let self, let value else {return }
+            viewManager.everythreeHoursForecastCollectionView.reloadData()
+            viewManager.fiveDaysForecastTableView.reloadData()
+        }
+        
     }
 
     
@@ -82,7 +88,7 @@ final class CityWeatherMainViewController : UIViewController {
     private func setupCurrentWeatherData(data : CurrentWeather) {
         viewManager.cityNameLabel.text = data.name
         viewManager.maxMinTempLabel.text = data.maxMinTempText
-        viewManager.currentTemperatureLabel.text = String(data.main.temp)
+        viewManager.currentTemperatureLabel.text = data.currentTempText
         guard let weather = data.weather.first else {return }
         viewManager.currentWeatherDescriptionLabel.text = weather.description
 
@@ -111,12 +117,15 @@ extension CityWeatherMainViewController : UITableViewDelegate, UITableViewDataSo
 
 extension CityWeatherMainViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        guard let forecast = vm.outputWeatherForecast.value else {return 0}
+        return forecast.list.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EverythreeHoursForecastCollectionViewCell.description(), for: indexPath)
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EverythreeHoursForecastCollectionViewCell.description(), for: indexPath) as! EverythreeHoursForecastCollectionViewCell
+        guard let forecast = vm.outputWeatherForecast.value else {return cell}
+        let data = forecast.list[indexPath.row]
+        cell.configureData(data: data)
         return cell
     }
 

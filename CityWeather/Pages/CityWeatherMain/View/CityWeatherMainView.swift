@@ -13,7 +13,7 @@ final class CityWeatherMainView : BaseView {
     
     let cityNameLabel = {
         let label = UILabel()
-        label.text = "Jeju City"
+        label.text = "- City"
         label.font = .systemFont(ofSize: 40)
         label.textAlignment = .center
         return label
@@ -21,7 +21,7 @@ final class CityWeatherMainView : BaseView {
     
     let currentTemperatureLabel = {
         let label = UILabel()
-        label.text = "5.9"
+        label.text = "-°"
         label.font = .systemFont(ofSize: 80, weight: .ultraLight)
         label.textAlignment = .center
         return label
@@ -29,7 +29,7 @@ final class CityWeatherMainView : BaseView {
     
     let currentWeatherDescriptionLabel = {
         let label = UILabel()
-        label.text = "Broken Clouds"
+        label.text = "-"
         label.font = .systemFont(ofSize: 24)
         label.textAlignment = .center
         return label
@@ -37,7 +37,7 @@ final class CityWeatherMainView : BaseView {
     
     let maxMinTempLabel = {
         let label = UILabel()
-        label.text = "최고 : 7.0 | 최저 : -4.2"
+        label.text = "최고 : -° | 최저 : -°"
         label.font = .systemFont(ofSize: 20)
         label.textAlignment = .center
         return label

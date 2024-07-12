@@ -11,7 +11,7 @@ import SnapKit
 final class EverythreeHoursForecastCollectionViewCell : UICollectionViewCell {
     
     // MARK: - UI
-    let contentsStackView = {
+    private let contentsStackView = {
        let sv = UIStackView()
         sv.axis = .vertical
         sv.alignment = .center
@@ -19,21 +19,21 @@ final class EverythreeHoursForecastCollectionViewCell : UICollectionViewCell {
         return sv
     }()
     
-    let timeLabel  = {
+    private let timeLabel  = {
         let label = UILabel()
-        label.text = "12시"
+        label.text = "-"
         return label
     }()
     
-    let weatherImageView  = {
+    private let weatherImageView  = {
         let iv = UIImageView()
         iv.image = UIImage(systemName: "heart")
         return iv
     }()
     
-    let temperatureLabel  = {
+    private let temperatureLabel  = {
         let label = UILabel()
-        label.text = "7"
+        label.text = "-"
         label.font = .systemFont(ofSize: 20)
         return label
     }()
@@ -52,10 +52,17 @@ final class EverythreeHoursForecastCollectionViewCell : UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - ConfigureData
+    func configureData(data : Forecast){
+        timeLabel.text = data.timeText
+        weatherImageView.loadImage(urlString: data.iconImageURL)
+        temperatureLabel.text = data.temparatureText
+    }
+
     
     // MARK: - ConfigureUI
     
-    func configureSubView() {
+    private func configureSubView() {
         [contentsStackView]
             .forEach{
                 contentView.addSubview($0)
@@ -69,15 +76,14 @@ final class EverythreeHoursForecastCollectionViewCell : UICollectionViewCell {
         
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         contentsStackView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
         
-//        timeLabel.snp.makeConstraints { make in
-//            make.top.horizontalEdges.equalTo(contentView)
-//            
-//        }
+        weatherImageView.snp.makeConstraints { make in
+            make.size.equalTo(50)
+        }
     }
 
     
