@@ -36,8 +36,8 @@ final class CityWeatherMainViewController : UIViewController {
             setupCurrentWeatherData(data : value)
         }
         
-        vm.outputWeatherForecast.bind {[weak self] value in
-            guard let self, let value else {return }
+        vm.outputWeatherForecast.bind {[weak self] _ in
+            guard let self else {return }
             viewManager.everythreeHoursForecastCollectionView.reloadData()
             viewManager.fiveDaysForecastTableView.reloadData()
         }
@@ -78,7 +78,8 @@ final class CityWeatherMainViewController : UIViewController {
     }
     // MARK: - EventSelector
     @objc private func toolbarListButtonTapped() {
-        print("리스트 버튼 클릭")
+        let vc = CityListSearchViewController()
+        pageTransition(to: vc, type: .push)
     }
     @objc private func toolbarmapButtonTapped() {
         print("맵 버튼 클릭")
