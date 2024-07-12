@@ -43,11 +43,24 @@ final class CityWeatherMainView : BaseView {
         return label
     }()
     
+    
+    let everythreeHoursForecastLabel = {
+        let label = UILabel()
+        label.attachIcon(image: UIImage(systemName: "calendar")!, direction: .leading, tintColor: Assets.Color.white,size: CGRect(x: 0, y: 0, width: 13, height: 13), text: " 3시간 간격의 일기예보", font: .systemFont(ofSize: 15))
+        return label
+    }()
+    
     let everythreeHoursForecastCollectionView = {
         let collectionViewLayout = configureCollectionVewLayout(scrollDirection: .horizontal, numberofItemInrow: 5, sectionSpacing : 0, height: 120)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         cv.backgroundColor = .clear
         return cv
+    }()
+    
+    let fiveDaysForecastLabel = {
+        let label = UILabel()
+        label.attachIcon(image: UIImage(systemName: "calendar")!, direction: .leading, tintColor: Assets.Color.white,size: CGRect(x: 0, y: 0, width: 13, height: 13), text: " 5일 간의 일기예보", font: .systemFont(ofSize: 15))
+        return label
     }()
     
     let fiveDaysForecastTableView = {
@@ -63,7 +76,7 @@ final class CityWeatherMainView : BaseView {
     // MARK: - ConfigureUI
     
     override func configureSubView() {
-        [cityNameLabel, currentTemperatureLabel, currentWeatherDescriptionLabel, maxMinTempLabel, everythreeHoursForecastCollectionView, fiveDaysForecastTableView]
+        [cityNameLabel, currentTemperatureLabel, currentWeatherDescriptionLabel, maxMinTempLabel, everythreeHoursForecastCollectionView, fiveDaysForecastTableView, everythreeHoursForecastLabel, fiveDaysForecastLabel]
             .forEach{
                 addSubview($0)
             }
@@ -90,14 +103,22 @@ final class CityWeatherMainView : BaseView {
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
         }
         
-        everythreeHoursForecastCollectionView.snp.makeConstraints { make in
+        everythreeHoursForecastLabel.snp.makeConstraints { make in
             make.top.equalTo(maxMinTempLabel.snp.bottom).offset(50)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
+        }
+        everythreeHoursForecastCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(everythreeHoursForecastLabel.snp.bottom).offset(4)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
             make.height.equalTo(120)
         }
         
-        fiveDaysForecastTableView.snp.makeConstraints { make in
+        fiveDaysForecastLabel.snp.makeConstraints { make in
             make.top.equalTo(everythreeHoursForecastCollectionView.snp.bottom).offset(20)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
+        }
+        fiveDaysForecastTableView.snp.makeConstraints { make in
+            make.top.equalTo(fiveDaysForecastLabel.snp.bottom).offset(4)
             make.bottom.equalTo(safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
         }

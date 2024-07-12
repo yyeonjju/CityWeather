@@ -11,6 +11,7 @@ final class CityWeatherMainViewController : UIViewController {
     // MARK: - UI
     let viewManager = CityWeatherMainView()
     // MARK: - Properties
+    let vm = CityWeatherMainViewModel()
     
     // MARK: - Lifecycle
     override func loadView() {
@@ -22,8 +23,22 @@ final class CityWeatherMainViewController : UIViewController {
         
         configureToolbar()
         setupDelegate()
+        bindData()
         
     }
+    // MARK: - BindData
+    private func bindData() {
+        vm.inputViewDidLoadTrigger.value = ()
+        
+        
+        vm.outputCurrentWeather.bind {[weak self] value in
+            guard let self, let value else {return }
+            setupCurrentWeatherData(data : value)
+        }
+        
+    }
+
+    
     // MARK: - ConfigureToolbar
     private func configureToolbar () {
         
@@ -63,9 +78,21 @@ final class CityWeatherMainViewController : UIViewController {
         print("맵 버튼 클릭")
     }
     
+    // MARK: - Method
+    private func setupCurrentWeatherData(data : CurrentWeather) {
+        viewManager.cityNameLabel.text = data.name
+        viewManager.maxMinTempLabel.text = data.maxMinTempText
+        viewManager.currentTemperatureLabel.text = String(data.main.temp)
+        guard let weather = data.weather.first else {return }
+        viewManager.currentWeatherDescriptionLabel.text = weather.description
+
+    }
+
+    
     // MARK: - SetupUI
     // MARK: - APIFetch
     // MARK: - PageTransition
+    
 }
 
 extension CityWeatherMainViewController : UITableViewDelegate, UITableViewDataSource {
@@ -79,9 +106,6 @@ extension CityWeatherMainViewController : UITableViewDelegate, UITableViewDataSo
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "5일 간의 일기예보"
-    }
 }
 
 

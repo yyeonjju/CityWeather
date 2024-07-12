@@ -10,7 +10,32 @@ import Foundation
 final class CityWeatherMainViewModel {
     //input
     //viewDidLoad 시점에 넘겨받은 city에 대한 현재날씨 / 3시간/ 5일 데이터 받기
+    var inputViewDidLoadTrigger : Observable<Void?> = Observable(nil)
     
     //output
-    //viewDidLoad 시점데이터 받아온걸 out
+    //현재 날씨 데이터
+    var outputCurrentWeather : Observable<CurrentWeather?> = Observable(nil)
+    
+    
+    
+    init() {
+        inputViewDidLoadTrigger.bind(onlyCallWhenValueDidSet: true) {[weak self] _ in
+            guard let self else {return }
+            self.getCurrentWeatherData()
+        }
+    }
+    
+    
+    private func getCurrentWeatherData() {
+        APIFetcher.shared.getCurrenWeather(lat: "37.583328", lon: "127.0") { [weak self] value, error in
+            guard let self else {return }
+            print("value, error❤️", value, error)
+            self.outputCurrentWeather.value = value
+        }
+    }
+    
+    
+    
+    
+    
 }
