@@ -103,12 +103,14 @@ final class CityWeatherMainViewController : UIViewController {
 
 extension CityWeatherMainViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return vm.DailyMaxMinTempList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FiveDaysForecastTableViewCell.description(), for: indexPath)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: FiveDaysForecastTableViewCell.description(), for: indexPath) as! FiveDaysForecastTableViewCell
+
+        let data = vm.DailyMaxMinTempList.sorted{$0.key < $1.key}[indexPath.row]
+        cell.configureData(data: DayMaxMinData(dateString: data.key, maxTemp: data.value.maxTemp, minTemp: data.value.minTemp, iconID: data.value.iconID))
         return cell
     }
     

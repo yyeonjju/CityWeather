@@ -12,8 +12,10 @@ final class DateFormatManager {
     private init() {}
     
     enum FormatString : String {
+        case date = "yyyy-MM-dd"
         case dateAndTime = "yyyy-MM-dd HH:mm:ss"
         case hour = "a h"
+        case weekday = "E"
 //        case yearDotMonth = "yyyy.MM"
 //        case yearDotMonthDotDay = "yyyy.MM.dd"
     }

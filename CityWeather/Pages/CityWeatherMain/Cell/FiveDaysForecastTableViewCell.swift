@@ -8,6 +8,13 @@
 import UIKit
 import SnapKit
 
+struct DayMaxMinData{
+    let dateString : String
+    let maxTemp : Double
+    let minTemp : Double
+    let iconID : String
+}
+
 final class FiveDaysForecastTableViewCell : UITableViewCell {
     // MARK: - UI
     let contentsStackView = {
@@ -28,7 +35,7 @@ final class FiveDaysForecastTableViewCell : UITableViewCell {
     let minTempLabel  = {
         let label = UILabel ()
         label.font = .systemFont(ofSize: 20)
-        label.text = "최저 -2"
+        label.text = "-"
         label.textColor = Assets.Color.gray4
         return label
     }()
@@ -36,7 +43,7 @@ final class FiveDaysForecastTableViewCell : UITableViewCell {
     let maxTempLabel  = {
         let label = UILabel ()
         label.font = .systemFont(ofSize: 20)
-        label.text = "최고 9"
+        label.text = "-"
         return label
     }()
     
@@ -45,7 +52,6 @@ final class FiveDaysForecastTableViewCell : UITableViewCell {
         iv.image = UIImage(systemName: "star")
         return iv
     }()
-    
 
     
     // MARK: - Initializer
@@ -62,10 +68,21 @@ final class FiveDaysForecastTableViewCell : UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - ConfigureData
+    func configureData(data : DayMaxMinData) {
+        let utcZoneDate = DateFormatManager.shared.getDateFormatter(formatterType : .utcZoneTime, format: .date).date(from: data.dateString)
+        guard let utcZoneDate else {return }
+        let krDateString = DateFormatManager.shared.getDateFormatter(formatterType: .krLocaleTime , format: .weekday).string(from: utcZoneDate)
+        weekdayLabel.text = krDateString
+        maxTempLabel.text = "최고 : \(Int(data.maxTemp))°"
+        minTempLabel.text = "최저 : \(Int(data.minTemp))°"
+        weatherImageView.loadImage(urlString: "\(APIURL.iconImageURL)\(data.iconID)\(APIURL.iconImageURLSuffix)")
+    }
+
     
     // MARK: - ConfigureUI
     
-    func configureSubView() {
+    private func configureSubView() {
         [contentsStackView, weatherImageView]
             .forEach{
                 contentView.addSubview($0)
@@ -78,7 +95,7 @@ final class FiveDaysForecastTableViewCell : UITableViewCell {
         
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         contentsStackView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }

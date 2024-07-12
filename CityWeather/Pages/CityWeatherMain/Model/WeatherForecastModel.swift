@@ -36,9 +36,10 @@ struct Forecast : Decodable {
         return "\(krDateString)시"
         }
     }
+    
     var iconImageURL : String {
         guard let iconID = weather.first?.icon else {return  ""}
-        return "\(APIURL.iconImageURL)\(iconID)@2x.png"
+        return "\(APIURL.iconImageURL)\(iconID)\(APIURL.iconImageURLSuffix)"
     }
     
 }
