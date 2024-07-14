@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 final class CityWeatherMainViewController : UIViewController {
     // MARK: - UI
@@ -28,7 +29,7 @@ final class CityWeatherMainViewController : UIViewController {
     }
     // MARK: - BindData
     private func bindData() {
-        vm.inputViewDidLoadTrigger.value = ()
+        vm.inputCoordinates.value = Coord(lon: 127.0, lat: 37.583328)
         
         
         vm.outputCurrentWeather.bind {[weak self] value in
@@ -40,6 +41,16 @@ final class CityWeatherMainViewController : UIViewController {
             guard let self else {return }
             viewManager.everythreeHoursForecastCollectionView.reloadData()
             viewManager.fiveDaysForecastTableView.reloadData()
+        }
+        
+        vm.outputCurrentWeatherRequestErrorMessage.bind {[weak self] value in
+            guard let self, let value else {return }
+            self.view.makeToast("날씨 정보를 가져오지 못했습니다 : \(value)")
+        }
+        
+        vm.outputForecastRequestErrorMessage.bind {[weak self] value in
+            guard let self, let value else {return }
+            self.view.makeToast("날씨 정보를 가져오지 못했습니다 : \(value)")
         }
         
     }
@@ -79,6 +90,10 @@ final class CityWeatherMainViewController : UIViewController {
     // MARK: - EventSelector
     @objc private func toolbarListButtonTapped() {
         let vc = CityListSearchViewController()
+        vc.navWillPop = {[weak self] coordinates in
+            guard let self else {return }
+            self.vm.inputCoordinates.value = Coord(lon: coordinates.lon, lat: coordinates.lat)
+        }
         pageTransition(to: vc, type: .push)
     }
     @objc private func toolbarmapButtonTapped() {

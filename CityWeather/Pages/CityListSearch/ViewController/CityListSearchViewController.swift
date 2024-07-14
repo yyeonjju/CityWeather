@@ -12,6 +12,7 @@ final class CityListSearchViewController : UIViewController {
     private let viewManager = CityListSearchView()
     // MARK: - Properties
     private let vm = CityListSearchViewModel()
+    var navWillPop : ((Coord)->Void)?
     // MARK: - Lifecycle
     override func loadView() {
         view = viewManager
@@ -21,6 +22,7 @@ final class CityListSearchViewController : UIViewController {
         super.viewDidLoad()
         
         configureNavigationBackButtonItem()
+        hideKeyboardWhenTappedAround()
         setupDelegate()
         bindData()
     }
@@ -41,6 +43,8 @@ final class CityListSearchViewController : UIViewController {
         viewManager.cityListTableView.delegate = self
         viewManager.cityListTableView.register(CityListTableViewCell.self, forCellReuseIdentifier: CityListTableViewCell.description())
         
+        viewManager.citySearchbar.delegate = self
+        
     }
     // MARK: - AddTarget
     private func setupAddTarget() {
@@ -60,10 +64,24 @@ extension CityListSearchViewController : UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CityListTableViewCell.description(), for: indexPath) as! CityListTableViewCell
+        cell.selectionStyle = .none
         guard let list = vm.outputCityList.value else {return cell}
         let data = list[indexPath.row]
         cell.configureData(data: data)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let list = vm.outputCityList.value else {return }
+        let data = list[indexPath.row]
+        navWillPop?(Coord(lon: data.coord.lon, lat: data.coord.lat))
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+extension CityListSearchViewController : UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //검색
     }
 }
 

@@ -15,14 +15,17 @@ struct DailyMaxMinTempData {
 
 final class CityWeatherMainViewModel {
     //input
-    //viewDidLoad 시점에 넘겨받은 city에 대한 현재날씨 / 3시간/ 5일 데이터 받기
-    var inputViewDidLoadTrigger : Observable<Void?> = Observable(nil)
+    //위경도 좌표 정보를 in
+    var inputCoordinates : Observable<Coord?> = Observable(nil)
     
     //output
     //현재 날씨 데이터
     var outputCurrentWeather : Observable<CurrentWeather?> = Observable(nil)
+    //날씨 예보 데이터
     var outputWeatherForecast : Observable<WeatherForecast?> = Observable(nil)
-    var todayMaxMinTmep : Observable<(String?, String?)> = Observable((nil, nil))
+    //에러
+    var outputCurrentWeatherRequestErrorMessage : Observable<String?> = Observable(nil)
+    var outputForecastRequestErrorMessage : Observable<String?> = Observable(nil)
     
     
     var DailyMaxMinTempList : [String : DailyMaxMinTempData] {
@@ -52,25 +55,27 @@ final class CityWeatherMainViewModel {
     
     
     init() {
-        inputViewDidLoadTrigger.bind(onlyCallWhenValueDidSet: true) {[weak self] _ in
-            guard let self else {return }
-            self.getCurrentWeatherData()
-            self.getWeatherForecastData()
+        inputCoordinates.bind(onlyCallWhenValueDidSet: true) {[weak self] value in
+            guard let self, let value else {return }
+            self.getCurrentWeatherData(coordinates: value)
+            self.getWeatherForecastData(coordinates: value)
         }
     }
     
     
-    private func getCurrentWeatherData() {
-        APIFetcher.shared.getCurrenWeather(lat: "37.583328", lon: "127.0") { [weak self] value, error in
+    private func getCurrentWeatherData(coordinates : Coord) {
+        APIFetcher.shared.getCurrenWeather(lat: String(coordinates.lat), lon: String(coordinates.lon)) { [weak self] value, errorMessage in
             guard let self else {return }
             self.outputCurrentWeather.value = value
+            self.outputCurrentWeatherRequestErrorMessage.value = errorMessage
         }
     }
     
-    private func getWeatherForecastData() {
-        APIFetcher.shared.getWeatherForecast(lat: "37.583328", lon: "127.0") { [weak self] value, error in
+    private func getWeatherForecastData(coordinates : Coord) {
+        APIFetcher.shared.getWeatherForecast(lat: String(coordinates.lat), lon: String(coordinates.lon)) { [weak self] value, errorMessage in
             guard let self else {return }
             self.outputWeatherForecast.value = value
+            self.outputForecastRequestErrorMessage.value = errorMessage
         }
     }
     

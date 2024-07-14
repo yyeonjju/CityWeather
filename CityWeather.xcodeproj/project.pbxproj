@@ -31,6 +31,7 @@
 		7D39A0272C41D1BE0094C512 /* CityListSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39A0262C41D1BE0094C512 /* CityListSearchViewModel.swift */; };
 		7D39A02A2C41D2530094C512 /* CityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39A0292C41D2530094C512 /* CityListModel.swift */; };
 		7D39A02C2C41D32E0094C512 /* MockDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39A02B2C41D32E0094C512 /* MockDataFetch.swift */; };
+		7D39A02F2C43BA290094C512 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 7D39A02E2C43BA290094C512 /* Toast */; };
 		7D6531422C3E6A3500478060 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6531412C3E6A3500478060 /* AppDelegate.swift */; };
 		7D6531442C3E6A3500478060 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6531432C3E6A3500478060 /* SceneDelegate.swift */; };
 		7D6531462C3E6A3500478060 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6531452C3E6A3500478060 /* ViewController.swift */; };
@@ -100,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D39A02F2C43BA290094C512 /* Toast in Frameworks */,
 				7D65317A2C3EC70100478060 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +391,7 @@
 			name = CityWeather;
 			packageProductDependencies = (
 				7D6531792C3EC70100478060 /* SnapKit */,
+				7D39A02E2C43BA290094C512 /* Toast */,
 			);
 			productName = CityWeather;
 			productReference = 7D65313E2C3E6A3500478060 /* CityWeather.app */;
@@ -420,6 +423,7 @@
 			mainGroup = 7D6531352C3E6A3500478060;
 			packageReferences = (
 				7D6531782C3EC70100478060 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				7D39A02D2C43BA290094C512 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = 7D65313F2C3E6A3500478060 /* Products */;
 			projectDirPath = "";
@@ -721,6 +725,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7D39A02D2C43BA290094C512 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 		7D6531782C3EC70100478060 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -732,6 +744,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7D39A02E2C43BA290094C512 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7D39A02D2C43BA290094C512 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
 		7D6531792C3EC70100478060 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7D6531782C3EC70100478060 /* XCRemoteSwiftPackageReference "SnapKit" */;

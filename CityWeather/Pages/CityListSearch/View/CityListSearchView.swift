@@ -19,7 +19,9 @@ final class CityListSearchView : BaseView {
     
     let citySearchbar = {
         let sb = UISearchBar()
-        sb.backgroundColor = Assets.Color.gray2
+        sb.searchBarStyle = .minimal
+        sb.placeholder = "도시를 검색하세요"
+        sb.searchTextField.textColor = .white
         return sb
     }()
     

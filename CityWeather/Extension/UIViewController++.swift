@@ -8,6 +8,8 @@
 import UIKit
 
 extension UIViewController {
+    
+    //pageTransition
     enum TransitionType {
         case push
         case present
@@ -32,6 +34,8 @@ extension UIViewController {
         
     }
     
+    
+    //backButton
     func configureNavigationBackButtonItem() {
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(popToPrevPage))
         backButton.tintColor = Assets.Color.white
@@ -42,5 +46,17 @@ extension UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    
+    
+    //endEditing
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 

@@ -11,6 +11,13 @@ import Foundation
 struct WeatherForecast : Decodable {
     let cod: String
     let list : [Forecast]
+    let city : City
+}
+
+struct City : Decodable {
+    let id : Int
+    let name : String
+    let coord : Coord
 }
 
 struct Forecast : Decodable {
