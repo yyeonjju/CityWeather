@@ -45,12 +45,12 @@ final class CityWeatherMainViewController : UIViewController {
         
         vm.outputCurrentWeatherRequestErrorMessage.bind {[weak self] value in
             guard let self, let value else {return }
-            self.view.makeToast("날씨 정보를 가져오지 못했습니다 : \(value)")
+            self.view.makeToast("현재 날씨 정보를 가져오지 못했습니다 : \(value)")
         }
         
         vm.outputForecastRequestErrorMessage.bind {[weak self] value in
             guard let self, let value else {return }
-            self.view.makeToast("날씨 정보를 가져오지 못했습니다 : \(value)")
+            self.view.makeToast("날씨예보 정보를 가져오지 못했습니다 : \(value)")
         }
         
     }

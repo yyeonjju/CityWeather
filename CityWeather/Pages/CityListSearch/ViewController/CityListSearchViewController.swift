@@ -34,6 +34,7 @@ final class CityListSearchViewController : UIViewController {
         vm.outputCityList.bind { [weak self] _ in
             guard let self else {return }
             self.viewManager.cityListTableView.reloadData()
+            view.endEditing(true)
         }
     }
 
@@ -82,6 +83,8 @@ extension CityListSearchViewController : UITableViewDelegate, UITableViewDataSou
 extension CityListSearchViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //검색
+        guard let keyword  = searchBar.text else {return }
+        vm.inputSearchKeyword.value = keyword
     }
 }
 

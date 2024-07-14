@@ -22,6 +22,7 @@ final class CityListSearchView : BaseView {
         sb.searchBarStyle = .minimal
         sb.placeholder = "도시를 검색하세요"
         sb.searchTextField.textColor = .white
+        sb.enablesReturnKeyAutomatically = false
         return sb
     }()
     
