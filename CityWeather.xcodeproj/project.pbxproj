@@ -49,6 +49,9 @@
 		7D6531752C3EB84C00478060 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D6531742C3EB84C00478060 /* Colors.xcassets */; };
 		7D6531772C3EB9B600478060 /* NameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6531762C3EB9B600478060 /* NameSpace.swift */; };
 		7D65317A2C3EC70100478060 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7D6531792C3EC70100478060 /* SnapKit */; };
+		7D9666332C45061300930476 /* WeatherMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9666322C45061300930476 /* WeatherMapViewController.swift */; };
+		7D9666362C45063500930476 /* WeatherMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9666352C45063500930476 /* WeatherMapView.swift */; };
+		7D9666392C450E0700930476 /* WeatherMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9666382C450E0700930476 /* WeatherMapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +97,9 @@
 		7D6531722C3E782900478060 /* APIURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURL.swift; sourceTree = "<group>"; };
 		7D6531742C3EB84C00478060 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		7D6531762C3EB9B600478060 /* NameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSpace.swift; sourceTree = "<group>"; };
+		7D9666322C45061300930476 /* WeatherMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapViewController.swift; sourceTree = "<group>"; };
+		7D9666352C45063500930476 /* WeatherMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapView.swift; sourceTree = "<group>"; };
+		7D9666382C450E0700930476 /* WeatherMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +333,9 @@
 		7D65315C2C3E6E7600478060 /* WeatherMap */ = {
 			isa = PBXGroup;
 			children = (
+				7D9666372C450DF700930476 /* ViewModel */,
+				7D9666342C45062D00930476 /* View */,
+				7D9666312C4505A100930476 /* ViewController */,
 			);
 			path = WeatherMap;
 			sourceTree = "<group>";
@@ -371,6 +380,30 @@
 				7D6531722C3E782900478060 /* APIURL.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		7D9666312C4505A100930476 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D9666322C45061300930476 /* WeatherMapViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7D9666342C45062D00930476 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D9666352C45063500930476 /* WeatherMapView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D9666372C450DF700930476 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7D9666382C450E0700930476 /* WeatherMapViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,12 +488,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D9666362C45063500930476 /* WeatherMapView.swift in Sources */,
 				7D399FFD2C40F8610094C512 /* Observable.swift in Sources */,
+				7D9666392C450E0700930476 /* WeatherMapViewModel.swift in Sources */,
 				7D6531682C3E72F300478060 /* UIView++.swift in Sources */,
 				7D39A0002C40F9F00094C512 /* APIFetcher.swift in Sources */,
 				7D6531642C3E723600478060 /* BaseViewController.swift in Sources */,
 				7D39A00A2C4102DA0094C512 /* CurrentWeatherModel.swift in Sources */,
 				7D39A00C2C412E940094C512 /* WeatherForecastModel.swift in Sources */,
+				7D9666332C45061300930476 /* WeatherMapViewController.swift in Sources */,
 				7D39A0102C4138280094C512 /* DateFormatManager.swift in Sources */,
 				7D39A01B2C41C5120094C512 /* CityListSearchView.swift in Sources */,
 				7D39A01F2C41C8490094C512 /* UIViewController++.swift in Sources */,

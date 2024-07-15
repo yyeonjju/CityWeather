@@ -98,6 +98,8 @@ final class CityWeatherMainViewController : UIViewController {
     }
     @objc private func toolbarmapButtonTapped() {
         print("맵 버튼 클릭")
+        let vc = WeatherMapViewController()
+        pageTransition(to: vc, type: .push)
     }
     
     // MARK: - Method

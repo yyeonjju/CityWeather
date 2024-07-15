@@ -22,7 +22,7 @@ final class Observable<T : Any> {
     }
     
 
-    //전달하면서 바로 실행되고! & value 바뀔때마다도 실행시켜줄 수 있게!
+    //onlyCallWhenValueDidSet : 인스턴스 생성될 때는 실행하지 않고 value 변경 시점에만 클로저 실행할 수 있도록 하는 파라미터
     func bind(onlyCallWhenValueDidSet : Bool = false, closure : @escaping (T) -> Void ) {
         if !onlyCallWhenValueDidSet{
             closure(value)

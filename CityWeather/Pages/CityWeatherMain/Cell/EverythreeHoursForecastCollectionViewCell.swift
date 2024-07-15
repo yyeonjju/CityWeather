@@ -21,6 +21,7 @@ final class EverythreeHoursForecastCollectionViewCell : UICollectionViewCell {
     
     private let timeLabel  = {
         let label = UILabel()
+        label.font = .systemFont(ofSize: 15)
         label.text = "-"
         return label
     }()
