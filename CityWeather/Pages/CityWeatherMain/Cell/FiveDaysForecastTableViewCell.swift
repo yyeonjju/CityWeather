@@ -49,7 +49,6 @@ final class FiveDaysForecastTableViewCell : UITableViewCell {
     
     let weatherImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(systemName: "star")
         return iv
     }()
 

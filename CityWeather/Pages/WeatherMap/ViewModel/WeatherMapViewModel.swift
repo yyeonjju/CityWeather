@@ -99,7 +99,7 @@ final class WeatherMapViewModel {
             print("authorizedWhenInUse")
             locationManager.startUpdatingLocation() //->didUpdateLocations을 불러준다
         default :
-            print("🎀🎀🎀",status)
+            print("status",status)
         }
     }
     

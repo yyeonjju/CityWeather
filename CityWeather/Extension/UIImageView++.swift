@@ -10,12 +10,17 @@ import UIKit
 
 extension UIImageView {
     func loadImage(urlString: String) {
-        ImageLoadManager.shared.downloadImage(urlString: urlString) { data in
-            DispatchQueue.main.async() { [weak self] in
-                guard let self, let image = UIImage(data: data) else {return}
-                self.image = image
-            }
+        ImageCacheManager.shared.loadImage(urlString: urlString) {[weak self] image in
+            guard let self, let image else {return }
+            self.image = image
         }
+    }
+    
+    
+    func configureCircleImageView() {
+        self.backgroundColor = .gray
+        self.layer.cornerRadius = self.frame.width/2
+        self.contentMode = .scaleAspectFill
     }
     
 }

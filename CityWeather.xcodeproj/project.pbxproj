@@ -52,6 +52,7 @@
 		7D9666332C45061300930476 /* WeatherMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9666322C45061300930476 /* WeatherMapViewController.swift */; };
 		7D9666362C45063500930476 /* WeatherMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9666352C45063500930476 /* WeatherMapView.swift */; };
 		7D9666392C450E0700930476 /* WeatherMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9666382C450E0700930476 /* WeatherMapViewModel.swift */; };
+		7D96663B2C45470100930476 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D96663A2C45470100930476 /* ImageCacheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		7D9666322C45061300930476 /* WeatherMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapViewController.swift; sourceTree = "<group>"; };
 		7D9666352C45063500930476 /* WeatherMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapView.swift; sourceTree = "<group>"; };
 		7D9666382C450E0700930476 /* WeatherMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapViewModel.swift; sourceTree = "<group>"; };
+		7D96663A2C45470100930476 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +295,7 @@
 				7D6531762C3EB9B600478060 /* NameSpace.swift */,
 				7D399FE92C3FFC730094C512 /* UtilFinc.swift */,
 				7D39A00F2C4138280094C512 /* DateFormatManager.swift */,
+				7D96663A2C45470100930476 /* ImageCacheManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				7D39A01F2C41C8490094C512 /* UIViewController++.swift in Sources */,
 				7D6531462C3E6A3500478060 /* ViewController.swift in Sources */,
 				7D39A02C2C41D32E0094C512 /* MockDataFetch.swift in Sources */,
+				7D96663B2C45470100930476 /* ImageCacheManager.swift in Sources */,
 				7D6531422C3E6A3500478060 /* AppDelegate.swift in Sources */,
 				7D399FFA2C40F1350094C512 /* UILabel.swift in Sources */,
 				7D39A0212C41CB5A0094C512 /* CityListTableViewCell.swift in Sources */,

@@ -28,7 +28,6 @@ final class EverythreeHoursForecastCollectionViewCell : UICollectionViewCell {
     
     private let weatherImageView  = {
         let iv = UIImageView()
-        iv.image = UIImage(systemName: "heart")
         return iv
     }()
     
