@@ -16,6 +16,7 @@ final class WeatherMapViewController : UIViewController {
     
     // MARK: - Properties
     private let vm = WeatherMapViewModel()
+    var navWillPop : ((Coord)->Void)?
     
     // MARK: - Lifecycle
     override func loadView() {
@@ -27,6 +28,7 @@ final class WeatherMapViewController : UIViewController {
         
         bindData()
         setupDelegate()
+        addGesture()
     }
     
     // MARK: - Method
@@ -42,32 +44,67 @@ final class WeatherMapViewController : UIViewController {
             guard let self, let coordinate else {return }
             self.setRegionCoordinator(center: coordinate)
         }
+        
+        vm.outputLongPressedPoint.bind(onlyCallWhenValueDidSet: true) {[weak self] pressedPoint in
+            guard let self, let pressedPoint else {return }
+            
+            let coordinate = viewManager.mapView.convert(pressedPoint, toCoordinateFrom: viewManager.mapView)
+            addAnnotation(coordinate : coordinate)
+        }
     }
 
     
     // MARK: - SetupDelegate
     private func setupDelegate() {
+        viewManager.mapView.delegate = self
         vm.locationManager.delegate = self
     }
     
+    // MARK: - Gesture
+    private func addGesture() {
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(viewTappedToGetCoordinate))
+        view.addGestureRecognizer(longGesture)
+    }
+    
+    @objc private func viewTappedToGetCoordinate(_ longGesture : UILongPressGestureRecognizer) {
+        let touchPoint = longGesture.location(in: viewManager.mapView)
+        vm.inputViewLongPressedGesturePoint.value = touchPoint
+    }
+
+    
     // MARK: - Location Related Method
 
-    func goToLocationSettings() {
+    private func goToLocationSettings() {
         if let BUNDLE_IDENTIFIER = Bundle.main.bundleIdentifier,
             let url = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/\(BUNDLE_IDENTIFIER)") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
-    func setRegionCoordinator(center : CLLocationCoordinate2D) {
+    private func setRegionCoordinator(center : CLLocationCoordinate2D) {
         //MapKit
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 500, longitudinalMeters: 500)
         viewManager.mapView.setRegion(region, animated: true)
     }
     
+    // MARK: - MapView Related Method
+    private func addAnnotation(coordinate : CLLocationCoordinate2D) {
+        view.makeToast("자세한 날씨를 알고싶다면 마커를 클릭하세요", duration: 2, position: .top)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        viewManager.mapView.addAnnotation(annotation)
+    }
 
 }
 
+
+extension WeatherMapViewController : MKMapViewDelegate{
+    func mapView(_ mapView: MKMapView, didSelect annotation: any MKAnnotation) {
+        navWillPop?(Coord(lon: annotation.coordinate.longitude, lat: annotation.coordinate.latitude))
+        navigationController?.popViewController(animated: true)
+    }
+}
 
 
 
@@ -98,6 +135,8 @@ extension WeatherMapViewController : CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //locations가 배열로 있다
         print("사용자 위치를 성공적으로 가지고 온 경우",#function)
+        
+        view.makeToast("날씨를 알고 싶은 위치를 길게 누르세요", duration: 5, position: .top)
         if let coordinate = locations.last?.coordinate {
             setRegionCoordinator(center: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude))
         }

@@ -10,13 +10,7 @@ import SnapKit
 import MapKit
 
 final class WeatherMapView : UIView {
-    // MARK: - UI
-//    let label = {
-//        let label = UILabel()
-//        label.text = "위치"
-//        return label
-//    }()
-    
+    // MARK: - UI    
     let mapView = {
         let map = MKMapView()
         return map

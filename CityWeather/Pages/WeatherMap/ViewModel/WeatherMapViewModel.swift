@@ -14,13 +14,17 @@ final class WeatherMapViewModel {
     //input
     //위치 권한 확인
     var inputCheckDeviceLocationAuthorization : Observable<Void?> = Observable(nil)
+    //뷰 탭 -> 제스쳐의 location을 사용해서 나온 CGPoint로 mapView에서의 위치 좌표 찾기
+    var inputViewLongPressedGesturePoint : Observable<CGPoint?> = Observable(nil)
+    
     
     //output
     //iOS 위치 서비스 활성화 안 되어 있을 때
     var outputIOSLocationServicesDisabled : Observable<Void?> = Observable(nil)
     //사용자 위치 권한이 거부되었을 때
     var outputDeviceLocationAuthorizationDenied : Observable<CLLocationCoordinate2D?> = Observable(nil)
-    
+    //LongPressedGesture로 뷰 탭했을 때 위치 반환
+    var outputLongPressedPoint : Observable<CGPoint?> = Observable(nil)
     
     
     init() {
@@ -28,6 +32,17 @@ final class WeatherMapViewModel {
             guard let self else {return }
             self.checkDeviceLocationAuthorization()
         }
+        
+        inputViewLongPressedGesturePoint.bind(onlyCallWhenValueDidSet: true) { [weak self] pressedPoint in
+            guard let self else {return }
+            self.convertCGPointToCoordinate(pressedPoint : pressedPoint)
+        }
+        
+    }
+    
+    private func convertCGPointToCoordinate(pressedPoint : CGPoint?) {
+        guard let pressedPoint else {return }
+        outputLongPressedPoint.value = pressedPoint
     }
     
     

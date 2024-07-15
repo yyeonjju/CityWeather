@@ -83,10 +83,6 @@ final class CityWeatherMainViewController : UIViewController {
         
     }
     
-    
-    // MARK: - AddTarget
-    private func setupAddTarget() {
-    }
     // MARK: - EventSelector
     @objc private func toolbarListButtonTapped() {
         let vc = CityListSearchViewController()
@@ -97,8 +93,11 @@ final class CityWeatherMainViewController : UIViewController {
         pageTransition(to: vc, type: .push)
     }
     @objc private func toolbarmapButtonTapped() {
-        print("맵 버튼 클릭")
         let vc = WeatherMapViewController()
+        vc.navWillPop = {[weak self] coordinates in
+            guard let self else {return }
+            self.vm.inputCoordinates.value = Coord(lon: coordinates.lon, lat: coordinates.lat)
+        }
         pageTransition(to: vc, type: .push)
     }
     
