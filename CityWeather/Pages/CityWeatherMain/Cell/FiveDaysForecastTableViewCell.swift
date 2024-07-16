@@ -17,7 +17,7 @@ struct DayMaxMinData{
 
 final class FiveDaysForecastTableViewCell : UITableViewCell {
     // MARK: - UI
-    let contentsStackView = {
+    private let contentsStackView = {
         let sv = UIStackView()
         sv.axis = .horizontal
         sv.alignment = .center
@@ -25,14 +25,14 @@ final class FiveDaysForecastTableViewCell : UITableViewCell {
         return sv
     }()
     
-    let weekdayLabel  = {
+    private let weekdayLabel  = {
         let label = UILabel ()
         label.font = .systemFont(ofSize: 20)
         label.text = "오늘"
         return label
     }()
     
-    let minTempLabel  = {
+    private let minTempLabel  = {
         let label = UILabel ()
         label.font = .systemFont(ofSize: 20)
         label.text = "-"
@@ -40,14 +40,14 @@ final class FiveDaysForecastTableViewCell : UITableViewCell {
         return label
     }()
     
-    let maxTempLabel  = {
+    private let maxTempLabel  = {
         let label = UILabel ()
         label.font = .systemFont(ofSize: 20)
         label.text = "-"
         return label
     }()
     
-    let weatherImageView = {
+    private let weatherImageView = {
         let iv = UIImageView()
         return iv
     }()

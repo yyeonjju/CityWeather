@@ -44,7 +44,7 @@ final class CityWeatherMainView : BaseView {
     }()
     
     
-    let everythreeHoursForecastLabel = {
+    private let everythreeHoursForecastLabel = {
         let label = UILabel()
         label.attachIcon(image: UIImage(systemName: "calendar")!, direction: .leading, tintColor: Assets.Color.white,size: CGRect(x: 0, y: 0, width: 13, height: 13), text: " 3시간 간격의 일기예보", font: .systemFont(ofSize: 15))
         return label
@@ -57,7 +57,7 @@ final class CityWeatherMainView : BaseView {
         return cv
     }()
     
-    let fiveDaysForecastLabel = {
+    private let fiveDaysForecastLabel = {
         let label = UILabel()
         label.attachIcon(image: UIImage(systemName: "calendar")!, direction: .leading, tintColor: Assets.Color.white,size: CGRect(x: 0, y: 0, width: 13, height: 13), text: " 5일 간의 일기예보", font: .systemFont(ofSize: 15))
         return label

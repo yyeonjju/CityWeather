@@ -10,9 +10,9 @@ import Toast
 
 final class CityWeatherMainViewController : UIViewController {
     // MARK: - UI
-    let viewManager = CityWeatherMainView()
+    private let viewManager = CityWeatherMainView()
     // MARK: - Properties
-    let vm = CityWeatherMainViewModel()
+    private let vm = CityWeatherMainViewModel()
     
     // MARK: - Lifecycle
     override func loadView() {

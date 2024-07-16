@@ -10,19 +10,19 @@ import SnapKit
 
 final class CityListTableViewCell : UITableViewCell {
     // MARK: - UI
-    let sharp = {
+    private let sharp = {
         let label = UILabel()
         label.text = "#"
         return label
     }()
     
-    let citynameLabel = {
+    private let citynameLabel = {
         let label = UILabel()
         label.text = "Seoul"
         return label
     }()
     
-    let countryLabel = {
+    private let countryLabel = {
         let label = UILabel()
         label.text = "KR"
         label.font = .boldSystemFont(ofSize: 14)

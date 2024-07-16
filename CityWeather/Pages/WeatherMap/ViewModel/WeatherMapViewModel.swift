@@ -49,7 +49,7 @@ final class WeatherMapViewModel {
     
     //locationManagerDidChangeAuthorization 시점에
     //iOS 위치 서비스 활성화 여부 체크
-    func checkDeviceLocationAuthorization () {
+    private func checkDeviceLocationAuthorization () {
 
         //해당경고 때문에 DispatchQueue.global().async
         //This method can cause UI unresponsiveness if invoked on the main thread. Instead, consider waiting for the `-locationManagerDidChangeAuthorization:` callback and checking `authorizationStatus` first.
@@ -74,7 +74,7 @@ final class WeatherMapViewModel {
     
     //locationManagerDidChangeAuthorization 시점에
     // 현재 사용자 위치 권한 상태 확인
-    func checkCurrentLocationAuthorization () {
+    private func checkCurrentLocationAuthorization () {
         var status : CLAuthorizationStatus
         
         if #available(iOS 14.0, *) {
