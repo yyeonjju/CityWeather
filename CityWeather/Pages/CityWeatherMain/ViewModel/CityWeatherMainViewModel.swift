@@ -66,18 +66,30 @@ final class CityWeatherMainViewModel {
     
     
     private func getCurrentWeatherData(coordinates : Coord) {
-        APIFetcher.shared.getCurrenWeather(lat: String(coordinates.lat), lon: String(coordinates.lon)) { [weak self] value, errorMessage in
+        APIFetcher.shared.getCurrenWeather(lat: String(coordinates.lat), lon: String(coordinates.lon)) { [weak self] result in
             guard let self else {return }
-            self.outputCurrentWeather.value = value
-            self.outputCurrentWeatherRequestErrorMessage.value = errorMessage
+            
+            switch result {
+            case .success(let value):
+                self.outputCurrentWeather.value = value
+            case .failure(let error):
+                self.outputCurrentWeatherRequestErrorMessage.value = error.errorMessage
+            }
         }
     }
     
     private func getWeatherForecastData(coordinates : Coord) {
-        APIFetcher.shared.getWeatherForecast(lat: String(coordinates.lat), lon: String(coordinates.lon)) { [weak self] value, errorMessage in
+        APIFetcher.shared.getWeatherForecast(lat: String(coordinates.lat), lon: String(coordinates.lon)) { [weak self] result in
             guard let self else {return }
-            self.outputWeatherForecast.value = value
-            self.outputForecastRequestErrorMessage.value = errorMessage
+            
+            switch result {
+            case .success(let value):
+                self.outputWeatherForecast.value = value
+            case .failure(let error):
+                self.outputForecastRequestErrorMessage.value = error.errorMessage
+            }
+
+
         }
     }
     

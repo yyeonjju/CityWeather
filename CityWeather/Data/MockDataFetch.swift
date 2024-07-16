@@ -28,7 +28,7 @@ fileprivate func loadData(fileName : String) -> Data? {
 
 
 func fetchMockData<T:Decodable>(fileName : String ,model: T.Type, handler : @escaping (T) -> Void ) {
-    DispatchQueue.global().asyncAfter(deadline: .now() + 1.5) {
+    DispatchQueue.global().asyncAfter(deadline: .now() + 1.0) {
 
         guard let data = loadData(fileName : fileName) else {return }
 

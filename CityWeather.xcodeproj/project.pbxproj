@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D399FEA2C3FFC730094C512 /* UtilFinc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D399FE92C3FFC730094C512 /* UtilFinc.swift */; };
+		7D399FEA2C3FFC730094C512 /* UtilFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D399FE92C3FFC730094C512 /* UtilFunc.swift */; };
 		7D399FEC2C40057E0094C512 /* CityWeatherMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D399FEB2C40057E0094C512 /* CityWeatherMainViewModel.swift */; };
 		7D399FEF2C40079E0094C512 /* EverythreeHoursForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D399FEE2C40079E0094C512 /* EverythreeHoursForecastCollectionViewCell.swift */; };
 		7D399FF12C400BEC0094C512 /* FiveDaysForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D399FF02C400BEC0094C512 /* FiveDaysForecastTableViewCell.swift */; };
@@ -56,7 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7D399FE92C3FFC730094C512 /* UtilFinc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilFinc.swift; sourceTree = "<group>"; };
+		7D399FE92C3FFC730094C512 /* UtilFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilFunc.swift; sourceTree = "<group>"; };
 		7D399FEB2C40057E0094C512 /* CityWeatherMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherMainViewModel.swift; sourceTree = "<group>"; };
 		7D399FEE2C40079E0094C512 /* EverythreeHoursForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EverythreeHoursForecastCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D399FF02C400BEC0094C512 /* FiveDaysForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDaysForecastTableViewCell.swift; sourceTree = "<group>"; };
@@ -293,7 +293,7 @@
 				7D39A0032C40FF7A0094C512 /* Error */,
 				7D399FFB2C40F8550094C512 /* Observable */,
 				7D6531762C3EB9B600478060 /* NameSpace.swift */,
-				7D399FE92C3FFC730094C512 /* UtilFinc.swift */,
+				7D399FE92C3FFC730094C512 /* UtilFunc.swift */,
 				7D39A00F2C4138280094C512 /* DateFormatManager.swift */,
 				7D96663A2C45470100930476 /* ImageCacheManager.swift */,
 			);
@@ -517,7 +517,7 @@
 				7D399FF32C4012200094C512 /* String++.swift in Sources */,
 				7D6531772C3EB9B600478060 /* NameSpace.swift in Sources */,
 				7D39A0122C4144720094C512 /* ImageLoadManager.swift in Sources */,
-				7D399FEA2C3FFC730094C512 /* UtilFinc.swift in Sources */,
+				7D399FEA2C3FFC730094C512 /* UtilFunc.swift in Sources */,
 				7D399FF62C40E9380094C512 /* CustomHeaderCollectionView.swift in Sources */,
 				7D39A0072C40FF990094C512 /* RequestError.swift in Sources */,
 				7D39A02A2C41D2530094C512 /* CityListModel.swift in Sources */,
