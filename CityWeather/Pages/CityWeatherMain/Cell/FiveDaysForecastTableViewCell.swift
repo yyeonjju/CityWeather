@@ -69,10 +69,8 @@ final class FiveDaysForecastTableViewCell : UITableViewCell {
     
     // MARK: - ConfigureData
     func configureData(data : DayMaxMinData) {
-        let utcZoneDate = DateFormatManager.shared.getDateFormatter(formatterType : .utcZoneTime, format: .date).date(from: data.dateString)
-        guard let utcZoneDate else {return }
-        let krDateString = DateFormatManager.shared.getDateFormatter(formatterType: .krLocaleTime , format: .weekday).string(from: utcZoneDate)
-        weekdayLabel.text = krDateString
+        let localDateString = DateFormatManager.shared.convertSpecificZoneStringToLocalZoneString(SpecificTimeZoneFormatter: .utcZoneTime, SpecificZoneString: data.dateString, fromFormat: .date, toFormat: .weekday)
+        weekdayLabel.text = localDateString
         maxTempLabel.text = "최고 : \(Int(data.maxTemp))°"
         minTempLabel.text = "최저 : \(Int(data.minTemp))°"
         weatherImageView.loadImage(urlString: "\(APIURL.iconImageURL)\(data.iconID)\(APIURL.iconImageURLSuffix)")

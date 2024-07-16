@@ -13,6 +13,7 @@ final class DateFormatManager {
     
     enum FormatString : String {
         case date = "yyyy-MM-dd"
+        case time = "HH:mm:ss"
         case dateAndTime = "yyyy-MM-dd HH:mm:ss"
         case hour = "a h"
         case weekday = "E"
@@ -45,5 +46,13 @@ final class DateFormatManager {
         let formatter = formatterType.formatter
         formatter.dateFormat = format.rawValue
         return formatter
+    }
+    
+    func convertSpecificZoneStringToLocalZoneString(SpecificTimeZoneFormatter : DateFormatManager.FormatterType, SpecificZoneString : String, fromFormat : DateFormatManager.FormatString, toFormat : DateFormatManager.FormatString) -> String {
+        let utcZoneDate = DateFormatManager.shared.getDateFormatter(formatterType : SpecificTimeZoneFormatter, format: fromFormat).date(from: SpecificZoneString)
+        guard let utcZoneDate else {return "-"}
+        let localDateString = DateFormatManager.shared.getDateFormatter(formatterType: .krLocaleTime , format: toFormat).string(from: utcZoneDate)
+        
+        return localDateString
     }
 }

@@ -37,10 +37,8 @@ struct Forecast : Decodable {
     }
     var timeText : String {
         get{
-            let utcZoneDate = DateFormatManager.shared.getDateFormatter(formatterType : .utcZoneTime, format: .dateAndTime).date(from: dtTxt)
-            guard let utcZoneDate else {return "-"}
-            let krDateString = DateFormatManager.shared.getDateFormatter(formatterType: .krLocaleTime , format: .hour).string(from: utcZoneDate)
-        return "\(krDateString)시"
+            let localDateString = DateFormatManager.shared.convertSpecificZoneStringToLocalZoneString(SpecificTimeZoneFormatter: .utcZoneTime, SpecificZoneString: dtTxt, fromFormat: .dateAndTime, toFormat: .hour)
+        return "\(localDateString)시"
         }
     }
     

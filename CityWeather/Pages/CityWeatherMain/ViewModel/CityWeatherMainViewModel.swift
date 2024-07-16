@@ -44,7 +44,9 @@ final class CityWeatherMainViewModel {
                 if dailyMaxMinDict[day]!.minTemp > item.main.tempMin {
                     dailyMaxMinDict[day]!.minTemp = item.main.tempMin
                 }
-                if time == "03:00:00" {
+                
+                let localTimeString = DateFormatManager.shared.convertSpecificZoneStringToLocalZoneString(SpecificTimeZoneFormatter: .utcZoneTime, SpecificZoneString: time, fromFormat: .time, toFormat: .time)
+                if localTimeString == "12:00:00" {
                     dailyMaxMinDict[day]!.iconID = item.weather.first?.icon ?? ""
                 }
                 
